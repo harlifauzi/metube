@@ -1,12 +1,18 @@
 import React from 'react';
 import './SearchBar.css';
 
-const SearchBar = () => {
+const SearchBar = ({ onSubmit, value, onChange }) => {
     return (
-        <div className="searchbar-container">
-            <input placeholder='Playlist link ...' class='js-search' type="text" />
-            <i class='bx bx-search'></i>
-        </div>
+        <form type="submit" onSubmit={onSubmit} className="searchbar-container">
+            <input 
+                type="text"
+                placeholder='Playlist link ...' 
+                className='js-search' 
+                value={value}
+                onChange={onChange}
+             />
+            <i className='bx bx-search'></i>
+        </form>
     )
 }
 
