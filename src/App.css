@@ -5,6 +5,10 @@
 }
 
 .app-dark{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
     height: 25vh;
     background-color: #202020;
 }
