@@ -22,35 +22,38 @@ const App = () => {
             .catch( err => err );
         
         if ( response.status !== undefined ) {
-            const totalResult = response.data.pageInfo.totalResults;
             const items = response.data.items;
             setPlaylistDetail(response);
-            getVideoDetail(items, totalResult);
+            getVideoDetail(items);
         }
     }
 
-    const getVideoDetail = (items, totalResult) => {
+    const getVideoDetail = async items => {
         let durations = 0;
-        items.map( (item, i) => {
-            axios.get(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyAtAVSMo9Ff_52rG0XO6EI9gnaTKBwfxtc&part=snippet, contentDetails, id&id=${item.contentDetails.videoId}`)
-                .then( res => {
-                    setPlaylistItems([...playlistItems, res]);
-                    const ISO8601 = res.data.items[0].contentDetails.duration;
-                    const milliseconds = moment.duration(ISO8601).asMilliseconds();
-                    durations += milliseconds;
+        let request = [];
 
-                    if ( i  === totalResult - 1 ) convertDuration(durations);
-                } )
-                .catch( err => err );
-        });
+        for ( let i = 0; i < items.length; i++ ){
+            request.push(axios.get(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyAtAVSMo9Ff_52rG0XO6EI9gnaTKBwfxtc&part=snippet, contentDetails, id&id=${items[i].contentDetails.videoId}`));
+        }
+
+        const response = await Promise.all(request);
+
+        for ( let i = 0; i < response.length; i++ ){
+            const ISO8601 = response[i].data.items[0].contentDetails.duration;
+            const milliseconds = moment.duration(ISO8601).asMilliseconds();
+            durations += milliseconds;
+        }
+
+        setPlaylistItems(response);
+        convertDuration(durations);
     }
 
     const convertDuration = data => {
-        console.log(data);
         let days = parseInt(data / (1000 * 60 * 60 * 24));
         let hours = parseInt(data % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
         let minutes = parseInt(data % (1000 * 60 * 60) / (1000 * 60));
         let seconds = data % (1000 * 60) / 1000;
+        let result = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
 
         if (days < 10) { 
             days = '0' + days
@@ -65,8 +68,8 @@ const App = () => {
             seconds = '0' + seconds
         }
 
-        setTotalDuration(`${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`);
-        console.log(`${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`);
+        console.log(result);
+        setTotalDuration(result);
     }
 
     return (
