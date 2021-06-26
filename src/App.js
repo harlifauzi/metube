@@ -49,10 +49,10 @@ const App = () => {
     }
 
     const convertDuration = data => {
-        let days = parseInt(data / (1000 * 60 * 60 * 24));
-        let hours = parseInt(data % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-        let minutes = parseInt(data % (1000 * 60 * 60) / (1000 * 60));
-        let seconds = data % (1000 * 60) / 1000;
+        let days = parseInt(data / (1000 * 60 * 60 * 24), 10);
+        let hours = parseInt(data % (1000 * 60 * 60 * 24) / (1000 * 60 * 60), 10);
+        let minutes = parseInt(data % (1000 * 60 * 60) / (1000 * 60), 10);
+        let seconds = parseInt(data % (1000 * 60) / 1000, 10);
         let result = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
 
         if (days < 10) { 
