@@ -10,8 +10,11 @@ const App = () => {
     const [ playlistDetail, setPlaylistDetail ] = useState(null);
     const [ playlistItems, setPlaylistItems ] = useState([]);
     const [ totalDuration, setTotalDuration ] = useState("");
+    const [ spinner, setSpinner ] = useState(false);
 
     const onSubmit = e => {
+        setTotalDuration("");
+        setSpinner(true);
         e.preventDefault();
         getPlaylistDetail();
     }
@@ -25,6 +28,11 @@ const App = () => {
             const items = response.data.items;
             setPlaylistDetail(response);
             getVideoDetail(items);
+        }
+
+        if ( response.status === undefined ){
+            setSpinner(false);
+            setTotalDuration("Playlist not found");
         }
     }
 
@@ -69,6 +77,7 @@ const App = () => {
         }
 
         setTotalDuration(result);
+        setSpinner(false);
     }
 
     return (
@@ -78,6 +87,7 @@ const App = () => {
             </div>
 
             <div className="app-darker">
+                { spinner && <Spinner /> }
                 { totalDuration && <p className="app-darker-totalduration">{totalDuration}</p> }
             </div>
         </div>
