@@ -18,3 +18,10 @@
     flex: 1;
     background-color: #181818;
 }
+
+.app-darker-totalduration{
+    margin: auto;
+    text-align: center;
+    color: white;
+    letter-spacing: 1px;
+}

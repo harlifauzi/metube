@@ -1,0 +1,25 @@
+.spinner-wrapper{
+    position: relative;
+    margin: auto;
+}
+
+.spinner::after {
+    content: '';
+    box-sizing: border-box;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    border-radius: 50%;
+}
+  
+.spinner.smooth::after {
+    border-top: 4px solid rgba(255, 255, 255, 1.0);
+    border-left: 4px solid rgba(255, 255, 255, 1.0);
+    border-right: 4px solid rgba(255, 255, 255, 0.0);
+    animation: spinner .6s linear infinite;
+}
+  
+  
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { SearchBar } from "./components";
+import { SearchBar, Spinner } from "./components";
 import getYoutubePlaylistId from "get-youtube-playlist-id";
 import axios from "axios";
 import moment from "moment";
@@ -68,7 +68,6 @@ const App = () => {
             seconds = '0' + seconds
         }
 
-        console.log(result);
         setTotalDuration(result);
     }
 
@@ -77,8 +76,9 @@ const App = () => {
             <div className="app-dark">
                 <SearchBar onSubmit={onSubmit} value={url} onChange={e => setUrl(e.target.value)} />
             </div>
-            <div className="app-darker">
 
+            <div className="app-darker">
+                { totalDuration && <p className="app-darker-totalduration">{totalDuration}</p> }
             </div>
         </div>
     )
