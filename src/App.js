@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { SearchBar, Spinner } from "./components";
+import { SearchBar, Spinner, YoutubeEmbed } from "./components";
 import getYoutubePlaylistId from "get-youtube-playlist-id";
 import axios from "axios";
 import moment from "moment";
@@ -89,6 +89,7 @@ const App = () => {
             <div className="app-darker">
                 { spinner && <Spinner /> }
                 { totalDuration && <p className="app-darker-totalduration">{totalDuration}</p> }
+                <YoutubeEmbed />
             </div>
         </div>
     )

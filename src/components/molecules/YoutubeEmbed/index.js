@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import './YoutubeEmbed.css';
+// import './YoutubeEmbed.css';
+import ReactPlayer from 'react-player';
 
 const YoutubeEmbed = ({ id }) => {
     return (
         <div className="youtubeembed-container">
-            <iframe
+            {/* <iframe
                 width="853"
                 height="480"
                 src={`https://www.youtube.com/embed/9boMnm5X9ak`}
@@ -13,13 +13,13 @@ const YoutubeEmbed = ({ id }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title="Embedded youtube"
+            /> */}
+            <ReactPlayer 
+                url='https://www.youtube.com/watch?v=9boMnm5X9ak?showinfo=0&enablejsapi=1&origin=http://localhost:3000' 
+                controls={true} 
             />
         </div>
     )
 }
-
-YoutubeEmbed.propTypes = {
-    id: PropTypes.string.isRequired
-};
 
 export default YoutubeEmbed
