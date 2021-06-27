@@ -11,17 +11,41 @@
     align-items: center;
     height: 25vh;
     background-color: #202020;
+    padding: 20px;
 }
 
 .app-darker{
     display: flex;
+    flex-direction: column;
     flex: 1;
     background-color: #181818;
+    padding: 20px;
+}
+
+@media (max-width: 400px){
+    .app-darker{
+        padding: 10px;
+    }
 }
 
 .app-darker-totalduration{
-    margin: auto;
+    margin: 50px auto;
     text-align: center;
     color: white;
     letter-spacing: 1px;
+}
+
+.app-darker-playlistitem{
+    display: flex;
+    margin: 10px 0;
+    color: white;
+}
+
+.app-darker-playlistitem-number{
+    width: 30px;
+    margin-right: 5px;
+}
+
+.app-darker-playlistitem-title{
+    word-wrap: break-word;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { SearchBar, Spinner, YoutubeEmbed } from "./components";
+import { SearchBar, Spinner, Footer } from "./components";
 import getYoutubePlaylistId from "get-youtube-playlist-id";
 import axios from "axios";
 import moment from "moment";
@@ -89,8 +89,19 @@ const App = () => {
             <div className="app-darker">
                 { spinner && <Spinner /> }
                 { totalDuration && <p className="app-darker-totalduration">{totalDuration}</p> }
-                <YoutubeEmbed />
+                
+                { playlistItems && 
+                <div className="app-darker-playlistitems">
+                    { playlistItems.map(( item, index ) => (
+                    <div className="app-darker-playlistitem">
+                        <p className="app-darker-playlistitem-number">{index+1}.</p>
+                        <p className="app-darker-playlistitem-title">{item.data.items[0].snippet.title}</p>
+                    </div>
+                    ))}    
+                </div>}
             </div>
+
+            <Footer />
         </div>
     )
 }

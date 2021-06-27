@@ -1,0 +1,18 @@
+.footer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    background-color: #181818;
+}
+
+.footer-container p{
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.footer-container span{
+    font-weight: 800;
+}
